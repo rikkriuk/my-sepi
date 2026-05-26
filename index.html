@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selamat Idul Adha 🐄</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵</button>
+    <audio id="bgMusic" src="assets/music-v2.mp3" loop preload="auto"></audio>
+    <audio id="sfxBubble" src="assets/bubble-pop.mp3" preload="auto"></audio>
+    <audio id="sfxVine" src="assets/vine-boom.mp3" preload="auto"></audio>
+
+    <!-- SPLASH SCREEN -->
+    <div class="splash" id="splash">
+      <div class="splash-card">
+        <span class="splash-emoji">🐄</span>
+        <div class="splash-title">Selamat Idul Adha!</div>
+        <div class="splash-sub">Mari menjadi sapi!</div>
+        <button class="splash-btn" onclick="enterSite()">Mulai</button>
+      </div>
+    </div>
+
+    <!-- =================== MAIN CARD =================== -->
+    <div class="scene" id="scene">
+      <div class="card" id="mainCard">
+        <span class="cow-emoji">🐄</span>
+        <div class="title">Selamat Idul Adha! 🌙</div>
+        <div class="subtitle">Apakah kamu mau jadi my sapi?</div>
+        <div class="btn-row" id="btnRow">
+          <button class="btn-yes" onclick="handleYes()">Mww 🐄</button>
+          <div class="btn-no-placeholder" id="btnNoPlaceholder">
+            <button class="btn-no" id="btnNo" onclick="dodgeNo()">Engga</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hint-text" id="hintText"></div>
+
+    <!-- =================== OVERLAY: YES (sapi picker) =================== -->
+    <div class="overlay" id="overlayYes">
+      <div class="overlay-card">
+        <button class="overlay-close" onclick="closeOverlay('overlayYes')">✕</button>
+        <span class="overlay-img">🐄✨</span>
+        <div class="overlay-title">Pilih Tipe Sapi Kamu!</div>
+        <div class="overlay-sub">Kamu tipe sapi yang mana bwng? 👀</div>
+        <div class="sapi-grid" id="sapiGrid"></div>
+      </div>
+    </div>
+
+    <!-- =================== OVERLAY: SAPI INFO =================== -->
+    <div class="overlay" id="overlayInfo">
+      <div class="overlay-card">
+        <button class="overlay-close" onclick="closeOverlay('overlayInfo')">✕</button>
+        <span class="sapi-info-emoji" id="infoEmoji">🐄</span>
+        <div class="overlay-title" id="infoTitle">Sapi Sekarang</div>
+        <div class="sapi-stat-row" id="infoStats"></div>
+        <div class="sapi-desc" id="infoDesc">...</div>
+        <button class="overlay-btn" onclick="handlePilih()">✅ Pilih ini!</button>
+      </div>
+    </div>
+
+    <!-- =================== OVERLAY: IMAGE (Engga) =================== -->
+    <div class="overlay" id="imgModal">
+      <div class="overlay-card">
+        <button class="overlay-close" onclick="closeOverlay('imgModal')">✕</button>
+        <img id="modalImg" src="" alt="sapi" class="cow-modal-img" />
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
