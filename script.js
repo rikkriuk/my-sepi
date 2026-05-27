@@ -274,8 +274,17 @@ function showSapiInfo(sapi) {
 
 // HANDLE PILIH → redirect to IG
 function getIGNick() {
+  const hash = window.location.hash.slice(1);
+  if (hash) return hash;
+
   const search = window.location.search.slice(1);
+  const params = new URLSearchParams(window.location.search);
+
+  for (const [key, value] of params.entries()) {
+    if (key !== 'fbclid' && value === '') return key;
+  }
   if (search && !search.includes('=')) return search;
+
   const path = window.location.pathname.split('/').filter(Boolean).pop();
   return path || '';
 }
@@ -320,7 +329,7 @@ function spawnHearts() {
 function handlePilih() {
    if (!selectedSapi) return;
 
-   const nick = getIGNick() || 'dia';
+   const nick = getIGNick() || 'Pengguna';
 
    const text =
       `Hallo, Saya ${selectedSapi.name} (sapi) 🐄\n`;
