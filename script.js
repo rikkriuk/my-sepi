@@ -156,22 +156,37 @@ function toggleMusic() {
 let musicReady = false;
 
 function showSplashReady() {
-  if (musicReady) return;
-  musicReady = true;
-  document.getElementById('splashLoading').style.display = 'none';
-  document.getElementById('splashReady').style.display = 'block';
+   if (musicReady) return;
+   musicReady = true;
+   document.getElementById('splashLoading').style.display = 'none';
+   document.getElementById('splashReady').style.display = 'block';
 }
 
 if (bgMusic.readyState >= 3) {
-  showSplashReady();
+   showSplashReady();
 } else {
-  bgMusic.addEventListener('canplaythrough', showSplashReady, { once: true });
-  setTimeout(showSplashReady, 5000); // fallback
+   bgMusic.addEventListener('canplaythrough', showSplashReady, { once: true });
+   setTimeout(showSplashReady, 5000);
 }
 
 function enterSite() {
-  document.getElementById('splash').classList.add('hidden');
-  startMusic();
+   document.getElementById('splashReady').style.display = 'none';
+   document.getElementById('splashLoading').style.display = 'block';
+
+   function proceed() {
+      document.getElementById('splash').classList.add('hidden');
+      bgMusic.currentTime = 10;
+      bgMusic.play().catch(() => {});
+      musicPlaying = true;
+      if (musicBtn) musicBtn.textContent = '🔊';
+   }
+
+   if (bgMusic.readyState >= 3) {
+      proceed();
+   } else {
+      bgMusic.addEventListener('canplaythrough', proceed, { once: true });
+      setTimeout(proceed, 5000);
+   }
 }
 
 // BTN ENGGA — KABUR

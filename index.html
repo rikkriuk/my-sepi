@@ -19,22 +19,20 @@
     <!-- SPLASH SCREEN -->
     <div class="splash" id="splash">
       <div class="splash-card">
-        <!-- Loading state -->
-        <div id="splashLoading">
-          <span class="splash-emoji">🐄</span>
-          <div class="splash-title loading-dots">Memuat</div>
-          <div class="splash-sub">Sapinya lagi pemanasan dulu...</div>
-        </div>
-        <!-- Ready state (tersembunyi dulu) -->
-        <div id="splashReady" style="display:none">
+        <div id="splashReady">
           <span class="splash-emoji">🐄</span>
           <div class="splash-title">Selamat Idul Adha!</div>
           <div class="splash-sub">Mari menjadi sapi!</div>
           <button class="splash-btn" onclick="enterSite()">Mulai</button>
         </div>
+        <div id="splashLoading" style="display:none">
+          <span class="splash-emoji">🐄</span>
+          <div class="splash-title loading-dots">Memuat</div>
+          <div class="splash-sub">Sapinya lagi pemanasan dulu...</div>
+        </div>
       </div>
     </div>
-
+    
     <!-- =================== MAIN CARD =================== -->
     <div class="scene" id="scene">
       <div class="card" id="mainCard">
