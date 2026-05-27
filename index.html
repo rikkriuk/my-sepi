@@ -19,14 +19,14 @@
     <!-- SPLASH SCREEN -->
     <div class="splash" id="splash">
       <div class="splash-card">
-        <!-- State: loading -->
+        <!-- Loading state -->
         <div id="splashLoading">
-          <span class="splash-emoji" style="animation: float 0.6s ease-in-out infinite alternate;">🐄</span>
-          <div class="splash-title">Selamat Idul Adha!</div>
-          <div class="splash-sub" id="loadingText">Memuat...</div>
+          <span class="splash-emoji">🐄</span>
+          <div class="splash-title loading-dots">Memuat</div>
+          <div class="splash-sub">Sapinya lagi pemanasan dulu...</div>
         </div>
-        <!-- State: ready -->
-        <div id="splashReady" style="display:none;">
+        <!-- Ready state (tersembunyi dulu) -->
+        <div id="splashReady" style="display:none">
           <span class="splash-emoji">🐄</span>
           <div class="splash-title">Selamat Idul Adha!</div>
           <div class="splash-sub">Mari menjadi sapi!</div>
@@ -80,6 +80,15 @@
       <div class="overlay-card">
         <button class="overlay-close" onclick="closeOverlay('imgModal')">✕</button>
         <img id="modalImg" src="" alt="sapi" class="cow-modal-img" />
+      </div>
+    </div>
+
+    <!-- OVERLAY: COUNTDOWN -->
+    <div class="overlay" id="overlayCountdown">
+      <div class="overlay-card" style="max-width:220px">
+        <div class="overlay-title" id="countdownEmoji" style="font-size:48px">🐄</div>
+        <div class="overlay-title" id="countdownText">Melapor ketersediaan jadi sapi dalam...</div>
+        <div style="font-size:64px; font-family:'Fredoka One',cursive; color:#e65100;" id="countdownNum">3</div>
       </div>
     </div>
 

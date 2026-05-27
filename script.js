@@ -153,19 +153,25 @@ function toggleMusic() {
    else startMusic();
 }
 
+let musicReady = false;
+
+function showSplashReady() {
+  if (musicReady) return;
+  musicReady = true;
+  document.getElementById('splashLoading').style.display = 'none';
+  document.getElementById('splashReady').style.display = 'block';
+}
+
+if (bgMusic.readyState >= 3) {
+  showSplashReady();
+} else {
+  bgMusic.addEventListener('canplaythrough', showSplashReady, { once: true });
+  setTimeout(showSplashReady, 5000); // fallback
+}
+
 function enterSite() {
   document.getElementById('splash').classList.add('hidden');
   startMusic();
-}
-
-bgMusic.addEventListener('canplaythrough', showSplashReady, { once: true });
-
-const splashFallback = setTimeout(showSplashReady, 5000);
-
-function showSplashReady() {
-  clearTimeout(splashFallback);
-  document.getElementById('splashLoading').style.display = 'none';
-  document.getElementById('splashReady').style.display = 'block';
 }
 
 // BTN ENGGA — KABUR
@@ -352,12 +358,34 @@ function handlePilih() {
    const igUsername = nick.replace('@', '');
 
    playSoundEffect(sfxBubble);
+   closeOverlay('overlayInfo');
 
-   const appUrl = `instagram://user?username=${igUsername}`;
-   const webUrl = `https://ig.me/m/${igUsername}?text=${encodedText}`;
+   document.getElementById('overlayCountdown').classList.add('active');
+   const numEl = document.getElementById('countdownNum');
 
-   window.location.href = appUrl;
-   setTimeout(() => {
-      window.open(webUrl, '_blank');
-   }, 1500);
+   let count = 3;
+   numEl.textContent = count;
+
+   const interval = setInterval(() => {
+      playSoundEffect(sfxBubble);
+      count--;
+
+      if (count <= 0) {
+         clearInterval(interval);
+         numEl.textContent = '✅';
+         document.getElementById('countdownText').textContent = 'Moooo!';
+
+         setTimeout(() => {
+            document.getElementById('overlayCountdown').classList.remove('active');
+            const appUrl = `instagram://user?username=${igUsername}`;
+            const webUrl = `https://ig.me/m/${igUsername}`;
+            window.location.href = appUrl;
+            setTimeout(() => window.open(webUrl, '_blank'), 1500);
+         }, 800);
+
+         return;
+      }
+
+      numEl.textContent = count;
+   }, 1000);
 }
