@@ -158,6 +158,16 @@ function enterSite() {
   startMusic();
 }
 
+bgMusic.addEventListener('canplaythrough', showSplashReady, { once: true });
+
+const splashFallback = setTimeout(showSplashReady, 5000);
+
+function showSplashReady() {
+  clearTimeout(splashFallback);
+  document.getElementById('splashLoading').style.display = 'none';
+  document.getElementById('splashReady').style.display = 'block';
+}
+
 // BTN ENGGA — KABUR
 btnNo.style.left = '160px';
 btnNo.style.top  = '0px';

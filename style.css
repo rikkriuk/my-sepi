@@ -546,3 +546,25 @@ body {
 .splash-btn:hover {
    transform: scale(1.07);
 }
+
+@keyframes float-bounce {
+   0%   { transform: translateY(0); }
+   50%  { transform: translateY(-16px); }
+   100% { transform: translateY(0); }
+}
+
+#splashLoading .splash-emoji {
+   animation: float-bounce 0.5s ease-in-out infinite !important;
+}
+
+#loadingText::after {
+   content: '';
+   animation: dots 1.2s steps(3, end) infinite;
+}
+
+@keyframes dots {
+   0%   { content: ''; }
+   33%  { content: '.'; }
+   66%  { content: '..'; }
+   100% { content: '...'; }
+}

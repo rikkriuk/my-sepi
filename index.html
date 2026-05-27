@@ -19,10 +19,19 @@
     <!-- SPLASH SCREEN -->
     <div class="splash" id="splash">
       <div class="splash-card">
-        <span class="splash-emoji">🐄</span>
-        <div class="splash-title">Selamat Idul Adha!</div>
-        <div class="splash-sub">Mari menjadi sapi!</div>
-        <button class="splash-btn" onclick="enterSite()">Mulai</button>
+        <!-- State: loading -->
+        <div id="splashLoading">
+          <span class="splash-emoji" style="animation: float 0.6s ease-in-out infinite alternate;">🐄</span>
+          <div class="splash-title">Selamat Idul Adha!</div>
+          <div class="splash-sub" id="loadingText">Memuat...</div>
+        </div>
+        <!-- State: ready -->
+        <div id="splashReady" style="display:none;">
+          <span class="splash-emoji">🐄</span>
+          <div class="splash-title">Selamat Idul Adha!</div>
+          <div class="splash-sub">Mari menjadi sapi!</div>
+          <button class="splash-btn" onclick="enterSite()">Mulai</button>
+        </div>
       </div>
     </div>
 
