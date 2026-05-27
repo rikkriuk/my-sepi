@@ -197,6 +197,15 @@ function dodgeNo() {
          `<span class="hint-nick">${nick}</span>${teases[noCount]}`;
 
       hintEl.classList.add('visible');
+
+      if (noCount === 8) {
+         const img = document.getElementById('modalImg');
+         img.src = CAT_IMAGES[imageIndex % CAT_IMAGES.length];
+         imageIndex++;
+         document.getElementById('imgModal').classList.add('active');
+         playSoundEffect(sfxVine);
+      }
+
       noCount++;
       return;
    }
@@ -330,17 +339,15 @@ function handlePilih() {
    if (!selectedSapi) return;
 
    const nick = getIGNick() || 'Pengguna';
-
-   const text =
-      `Hallo, Saya ${selectedSapi.name} (sapi) 🐄\n`;
-
-   const encodedText = encodeURIComponent(text);
-
-   const igUsername = nick;
-
-   const url = `https://ig.me/m/${igUsername}?text=${encodedText}`;
+   const igUsername = nick.replace('@', '');
 
    playSoundEffect(sfxBubble);
 
-   window.open(url, '_blank');
+   const appUrl = `instagram://user?username=${igUsername}`;
+   const webUrl = `https://ig.me/m/${igUsername}?text=${encodedText}`;
+
+   window.location.href = appUrl;
+   setTimeout(() => {
+      window.open(webUrl, '_blank');
+   }, 1500);
 }
